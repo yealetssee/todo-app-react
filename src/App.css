@@ -1,0 +1,16 @@
+main {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  background-color: #fafafa;
+}
+
+.bgPhoto {
+  width: 100%;
+  height: 20rem;
+  background-image: url(./assets/images/bg-desktop-light.jpg);
+  background-position: top;
+  /* background-size: cover; */
+
+  background-repeat: no-repeat;
+}

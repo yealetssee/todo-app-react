@@ -1,0 +1,62 @@
+.todo-item .checkBox {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 2rem;
+}
+.todo-item {
+  width: 100%;
+
+  background-color: #ffffff;
+
+  height: 4.8rem;
+  display: flex;
+  align-items: center;
+
+  /* justify-content: space-evenly; */
+  gap: 1.2rem;
+  border-bottom: 0.1rem solid #e3e4f1;
+}
+
+.todo-item:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.todo-item input[type="checkbox"] {
+  width: 2rem;
+  height: 2rem;
+
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0.1rem solid #e3e4f1;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+}
+.todo-item input[type="checkbox"]:checked {
+  background-image: url(/src/assets/images/icon-check.svg),
+    linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  outline: none;
+}
+.todo-item p {
+  border: none;
+  outline: none;
+  width: 70%;
+
+  font-size: 1.3rem;
+  line-height: 1.2rem;
+  font-weight: 400;
+  font-family: inherit;
+
+  color: #494c6b;
+}
+
+.removeIcon {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
