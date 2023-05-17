@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoItem from "./Todo-item";
+import { v4 as uuidv4, v5 as uuidv5 } from "uuid";
 
 const ToDo = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState([
+    {
+      id: uuidv4(),
+      text: "Complete online JavaScript course",
+      completed: true,
+    },
+    {
+      id: uuidv4(),
+      text: "Jog around the park 3x",
+      completed: false,
+    },
+    {
+      id: uuidv4(),
+      text: "10 minutes meditation",
+      completed: false,
+    },
+  ]);
+
+  const handleSubmit = (event) => {
+    if (inputValue != "") {
+      event.preventDefault();
+      const newTodo = {
+        id: uuidv4(),
+        text: inputValue,
+        completed: false,
+      };
+      setTodos([...todos, newTodo]);
+
+      setInputValue("");
+    } else {
+      event.preventDefault();
+
+      event.stopPropagation();
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <section>
       <div className="header">
@@ -16,20 +58,21 @@ const ToDo = () => {
           </svg>
         </div>
       </div>
-      <form action="">
+      <form className="createBox" onSubmit={handleSubmit}>
         <div className="checkBox">
-          <input type="checkbox" id="newCheck" />
+          <input type="submit" value={""} id="newCheck" />
         </div>
         <input
           type="text"
           name="newTodo"
           id="newTodo"
           placeholder="Create a new todo..."
+          value={inputValue}
+          onChange={handleInputChange}
         />
       </form>
-      <div className="todo-list">
-        <TodoItem text={"Complete online Javascript course"} />
-      </div>
+
+      <TodoItem todos={todos} setTodos={setTodos} />
     </section>
   );
 };

@@ -33,7 +33,22 @@
   cursor: pointer;
   outline: none;
 }
-.todo-item input[type="checkbox"]:checked {
+.todo-item input[type="checkbox"]:hover {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, #55ddff 0%, #c058f3 100%) border-box;
+  border: 0.2rem solid transparent;
+}
+/* .todo-item input[type="checkbox"]:checked {
+  background-image: url(/src/assets/images/icon-check.svg),
+    linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  outline: none;
+} */
+
+.completed {
   background-image: url(/src/assets/images/icon-check.svg),
     linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
   background-repeat: no-repeat;
