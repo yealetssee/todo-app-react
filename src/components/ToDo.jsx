@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import TodoItem from "./Todo-item";
+import FilterTodos from "./Filter-todos";
 import { v4 as uuidv4, v5 as uuidv5 } from "uuid";
 
 const ToDo = () => {
   const [inputValue, setInputValue] = useState("");
+
   const [todos, setTodos] = useState([
     {
       id: uuidv4(),
@@ -21,6 +23,13 @@ const ToDo = () => {
       completed: false,
     },
   ]);
+  const [filter, setFilter] = useState("all");
+  const filteredTodos =
+    filter === "completed"
+      ? todos.filter((todo) => todo.completed)
+      : filter === "active"
+      ? todos.filter((todo) => !todo.completed)
+      : todos;
 
   const handleSubmit = (event) => {
     if (inputValue != "") {
@@ -37,6 +46,12 @@ const ToDo = () => {
       event.preventDefault();
 
       event.stopPropagation();
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit(event);
     }
   };
 
@@ -69,10 +84,18 @@ const ToDo = () => {
           placeholder="Create a new todo..."
           value={inputValue}
           onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
         />
       </form>
 
-      <TodoItem todos={todos} setTodos={setTodos} />
+      <TodoItem setTodos={setTodos} filtered={filteredTodos} />
+      <FilterTodos
+        todos={todos}
+        setTodos={setTodos}
+        setFilter={setFilter}
+        filter={filter}
+      />
+      <p className="drag-drop">Drag and drop to reorder list</p>
     </section>
   );
 };

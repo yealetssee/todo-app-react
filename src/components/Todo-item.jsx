@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import "./Todo-item.css";
-const TodoItem = ({ todos, setTodos }) => {
+
+const TodoItem = ({ setTodos, filtered }) => {
   const clickRemoveHandler = (id) => {
     setTodos((todoobj) => todoobj.filter((obj) => obj.id !== id));
   };
@@ -16,24 +17,16 @@ const TodoItem = ({ todos, setTodos }) => {
     });
   };
 
-  const completed = `background-image: url(/src/assets/images/icon-check.svg),
-  linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
-background-repeat: no-repeat;
-
-background-position: center;
-
-outline: none`;
-
   return (
     <div className="todo-list">
-      {todos.map((todo) => (
+      {filtered.map((todo) => (
         <div className="todo-item" key={todo.id}>
           <div className="checkBox">
             <input
               type="checkbox"
               id={todo.id}
+              checked={todo.completed}
               onChange={() => checkCompleteHandler(todo.id)}
-              style={todo.completed ? { completed } : null}
             />
           </div>
           <p>{todo.completed ? <del>{todo.text}</del> : todo.text}</p>

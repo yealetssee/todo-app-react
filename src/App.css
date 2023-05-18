@@ -1,8 +1,7 @@
 main {
   width: 100%;
-  min-height: 100%;
+  min-height: 70.3rem;
   position: relative;
-  background-color: #fafafa;
 }
 
 .bgPhoto {
