@@ -75,7 +75,7 @@ section .header {
   font-weight: 400;
   font-family: inherit;
 
-  color: #494c6b;
+  color: #393a4b;
 }
 
 #newTodo::placeholder {
@@ -98,4 +98,54 @@ section .header {
   letter-spacing: -0.019rem;
   text-align: center;
   color: #9495a5;
+}
+.toggleLogo {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  section {
+    width: 50.4rem;
+    height: auto;
+  }
+  .header h1 {
+    font-size: 4rem;
+  }
+
+  .createBox {
+    height: 6.4rem;
+  }
+
+  #newTodo {
+    font-size: 1.8rem;
+  }
+}
+
+#dark .createBox {
+  background-color: #25273d;
+  box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+}
+
+#dark #newCheck {
+  background-color: #25273d;
+  border: 0.1rem solid #393a4b;
+}
+
+#dark #newTodo {
+  background-color: #25273d;
+}
+#dark #newTodo {
+  color: #c8cbe7;
+}
+
+#dark #newTodo::placeholder {
+  color: #767992;
+}
+
+/* .todo-list {
+  background-color: ;
+} */
+
+.drag-drop {
+  color: #5b5e7e;
 }

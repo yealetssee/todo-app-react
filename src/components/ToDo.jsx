@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import "./ToDo.css";
 import TodoItem from "./Todo-item";
 import FilterTodos from "./Filter-todos";
 import { v4 as uuidv4, v5 as uuidv5 } from "uuid";
+import { ThemeContext } from "../App";
 
 const ToDo = () => {
+  const { theme, changeTheme } = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState("");
 
   const [todos, setTodos] = useState([
@@ -20,6 +23,11 @@ const ToDo = () => {
     {
       id: uuidv4(),
       text: "10 minutes meditation",
+      completed: false,
+    },
+    {
+      id: uuidv4(),
+      text: "Read for 1 hour",
       completed: false,
     },
   ]);
@@ -63,7 +71,7 @@ const ToDo = () => {
     <section>
       <div className="header">
         <h1>todo</h1>
-        <div className="toggleLogo">
+        <div className="toggleLogo" onClick={changeTheme}>
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
             <path
               fill="#FFF"
@@ -75,7 +83,7 @@ const ToDo = () => {
       </div>
       <form className="createBox" onSubmit={handleSubmit}>
         <div className="checkBox">
-          <input type="submit" value={""} id="newCheck" />
+          <input className="newCheck" type="submit" value={""} id="newCheck" />
         </div>
         <input
           type="text"

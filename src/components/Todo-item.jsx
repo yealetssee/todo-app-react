@@ -39,6 +39,7 @@ const TodoItem = ({ setTodos, filtered }) => {
               viewBox="3 3 12 12"
               width="12"
               height="12"
+              className="removesvg"
             >
               <path
                 fill="#494C6B"

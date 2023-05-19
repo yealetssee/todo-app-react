@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Filter-todos.css";
+import { ThemeContext } from "../App";
 
 const FilterTodos = ({ todos, setTodos, setFilter, filter }) => {
   const clickClearHandler = () => {
@@ -24,19 +25,19 @@ const FilterTodos = ({ todos, setTodos, setFilter, filter }) => {
       </div>
       <div className="filters">
         <span
-          className={filter === "all" ? "active" : ""}
+          style={{ color: filter === "all" ? "#3a7cfd" : null }}
           onClick={() => handleFilterChange("all")}
         >
           All
         </span>
         <span
-          className={filter === "all" ? "active" : ""}
+          style={{ color: filter === "active" ? "#3a7cfd" : null }}
           onClick={() => handleFilterChange("active")}
         >
           Active
         </span>
         <span
-          className={filter === "all" ? "active" : ""}
+          style={{ color: filter === "completed" ? "#3a7cfd" : null }}
           onClick={() => handleFilterChange("completed")}
         >
           Completed
