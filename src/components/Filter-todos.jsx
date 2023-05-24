@@ -1,6 +1,4 @@
-import { useContext, useState } from "react";
 import "./Filter-todos.css";
-import { ThemeContext } from "../App";
 
 const FilterTodos = ({ todos, setTodos, setFilter, filter }) => {
   const clickClearHandler = () => {

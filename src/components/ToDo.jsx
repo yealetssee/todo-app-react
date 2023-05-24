@@ -8,7 +8,7 @@ import { ThemeContext } from "../App";
 const ToDo = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState("");
-
+  const [isChecked, setIsChecked] = useState(false);
   const [todos, setTodos] = useState([
     {
       id: uuidv4(),
@@ -40,20 +40,17 @@ const ToDo = () => {
       : todos;
 
   const handleSubmit = (event) => {
-    if (inputValue != "") {
-      event.preventDefault();
+    event.preventDefault();
+    if (inputValue.trim() != "") {
       const newTodo = {
         id: uuidv4(),
         text: inputValue,
-        completed: false,
+        completed: isChecked,
       };
       setTodos([...todos, newTodo]);
 
       setInputValue("");
-    } else {
-      event.preventDefault();
-
-      event.stopPropagation();
+      setIsChecked(false);
     }
   };
 
@@ -65,6 +62,10 @@ const ToDo = () => {
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  const handleCompleteCheckboxChange = () => {
+    setIsChecked((checkstate) => !checkstate);
   };
 
   return (
@@ -83,7 +84,13 @@ const ToDo = () => {
       </div>
       <form className="createBox" onSubmit={handleSubmit}>
         <div className="checkBox">
-          <input className="newCheck" type="submit" value={""} id="newCheck" />
+          <input
+            className="newCheck"
+            type="checkbox"
+            id="newCheck"
+            checked={isChecked}
+            onChange={handleCompleteCheckboxChange}
+          />
         </div>
         <input
           type="text"

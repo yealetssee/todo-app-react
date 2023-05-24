@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Todo-item.css";
 
 const TodoItem = ({ setTodos, filtered }) => {

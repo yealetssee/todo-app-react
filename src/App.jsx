@@ -10,7 +10,7 @@ function App() {
   const changeTheme = () => {
     setTheme((current) => (current === "light" ? "dark" : "light"));
   };
-  console.log(theme);
+
   return (
     <ThemeContext.Provider value={{ theme, changeTheme }}>
       <main id={theme}>

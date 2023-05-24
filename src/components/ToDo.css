@@ -45,7 +45,7 @@ section .header {
   margin-left: 2rem;
 }
 
-.createBox input[type="submit"] {
+.createBox input[type="checkbox"] {
   width: 2rem;
   height: 2rem;
   background-color: white;
@@ -55,7 +55,7 @@ section .header {
   border-radius: 50%;
 }
 
-.createBox input[type="submit"]:focus {
+.createBox input[type="checkbox"]:checked {
   background-image: url(/src/assets/images/icon-check.svg),
     linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
   background-repeat: no-repeat;
