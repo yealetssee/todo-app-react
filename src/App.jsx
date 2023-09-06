@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import "./App.css";
 import ToDo from "./components/ToDo";
 

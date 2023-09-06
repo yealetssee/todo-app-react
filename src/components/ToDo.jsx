@@ -1,53 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ToDo.css";
 import TodoItem from "./Todo-item";
 import FilterTodos from "./Filter-todos";
-import { v4 as uuidv4, v5 as uuidv5 } from "uuid";
+
 import { ThemeContext } from "../App";
+import useService from "../hooks/useService";
 
 const ToDo = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [todos, setTodos] = useState([
-    {
-      id: uuidv4(),
-      text: "Complete online JavaScript course",
-      completed: true,
-    },
-    {
-      id: uuidv4(),
-      text: "Jog around the park 3x",
-      completed: false,
-    },
-    {
-      id: uuidv4(),
-      text: "10 minutes meditation",
-      completed: false,
-    },
-    {
-      id: uuidv4(),
-      text: "Read for 1 hour",
-      completed: false,
-    },
-  ]);
+
+  const { todoss, setTodoss, loading, fetchData, createTodo, deleteTodo } =
+    useService();
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   const [filter, setFilter] = useState("all");
   const filteredTodos =
     filter === "completed"
-      ? todos.filter((todo) => todo.completed)
+      ? todoss.filter((todo) => todo.completed)
       : filter === "active"
-      ? todos.filter((todo) => !todo.completed)
-      : todos;
+      ? todoss.filter((todo) => !todo.completed)
+      : todoss;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (inputValue.trim() != "") {
       const newTodo = {
-        id: uuidv4(),
-        text: inputValue,
+        value: inputValue,
         completed: isChecked,
       };
-      setTodos([...todos, newTodo]);
+      createTodo(newTodo);
 
       setInputValue("");
       setIsChecked(false);
@@ -82,7 +67,7 @@ const ToDo = () => {
           </svg>
         </div>
       </div>
-      <form className="createBox" onSubmit={handleSubmit}>
+      <form className="createBox">
         <div className="checkBox">
           <input
             className="newCheck"
@@ -103,13 +88,23 @@ const ToDo = () => {
         />
       </form>
 
-      <TodoItem setTodos={setTodos} filtered={filteredTodos} />
-      <FilterTodos
-        todos={todos}
-        setTodos={setTodos}
-        setFilter={setFilter}
-        filter={filter}
-      />
+      {!loading ? (
+        <div>
+          <TodoItem
+            setTodos={setTodoss}
+            filtered={filteredTodos}
+            isLoading={loading}
+            deleteTodo={deleteTodo}
+          />
+          <FilterTodos
+            todos={todoss}
+            setTodos={setTodoss}
+            setFilter={setFilter}
+            filter={filter}
+          />
+        </div>
+      ) : null}
+
       <p className="drag-drop">Drag and drop to reorder list</p>
     </section>
   );
